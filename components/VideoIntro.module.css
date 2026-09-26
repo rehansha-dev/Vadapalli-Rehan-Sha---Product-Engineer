@@ -1,0 +1,307 @@
+.hero {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--color-void);
+  isolation: isolate;
+}
+
+/* ---------- Background ambient blurred video ---------- */
+.bgVideoWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(60px) saturate(1.3) brightness(0.55);
+  transform: scale(1.2);
+  opacity: 0.75;
+}
+
+/* ---------- Foreground video ---------- */
+.fgVideoWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.fgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  animation: kenBurns 18s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* ---------- Gradient overlays for legibility ---------- */
+.gradientBottom {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(10, 9, 8, 0.96) 0%,
+    rgba(10, 9, 8, 0.72) 18%,
+    rgba(10, 9, 8, 0.25) 42%,
+    rgba(10, 9, 8, 0.15) 60%,
+    rgba(10, 9, 8, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    transparent 35%,
+    rgba(10, 9, 8, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Three.js particle layer ---------- */
+.particleLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+/* ---------- Content overlay ---------- */
+.content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--edge) clamp(3.5rem, 8vh, 6rem);
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: 1.25rem;
+  opacity: 0;
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.92;
+  margin-bottom: 1.5rem;
+}
+
+.nameLine {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  color: var(--color-paper);
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  display: block;
+}
+
+.nameLineInner {
+  display: block;
+  transform: translateY(110%);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.6vw, 1.35rem);
+  color: var(--color-ash);
+  max-width: 46ch;
+  line-height: 1.6;
+  opacity: 0;
+}
+
+.subtitle strong {
+  color: var(--color-paper);
+  font-weight: 500;
+}
+
+/* ---------- Glass controls ---------- */
+.controls {
+  position: absolute;
+  right: var(--edge);
+  bottom: clamp(3.5rem, 8vh, 6rem);
+  z-index: 6;
+  display: flex;
+  gap: 0.75rem;
+  opacity: 0;
+}
+
+.glassBtn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-glass-border);
+  background: var(--color-glass);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-paper);
+  transition: background 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.glassBtn:hover {
+  background: rgba(255, 140, 66, 0.14);
+  border-color: rgba(255, 140, 66, 0.4);
+  transform: translateY(-2px);
+}
+
+.glassBtn svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* ---------- Sound hint badge ---------- */
+.soundHint {
+  position: absolute;
+  right: var(--edge);
+  bottom: calc(clamp(3.5rem, 8vh, 6rem) + 3.75rem);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-glass-border);
+  background: var(--color-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-paper);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.soundHint.visible {
+  opacity: 1;
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  box-shadow: 0 0 0 0 rgba(255, 140, 66, 0.7);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 140, 66, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 140, 66, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 140, 66, 0); }
+}
+
+/* ---------- Scroll indicator ---------- */
+.scrollIndicator {
+  position: absolute;
+  left: 50%;
+  bottom: 2.25rem;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  color: var(--color-ash);
+  opacity: 0;
+}
+
+.scrollLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  position: relative;
+  width: 1px;
+  height: 2.75rem;
+  background: rgba(245, 241, 232, 0.18);
+  overflow: hidden;
+}
+
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--color-ember));
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0% { top: -100%; }
+  60% { top: 100%; }
+  100% { top: 100%; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .content {
+    padding-bottom: 5.5rem;
+  }
+  .controls {
+    right: 1.25rem;
+    bottom: 5.5rem;
+    gap: 0.6rem;
+  }
+  .glassBtn {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  .soundHint {
+    right: 1.25rem;
+    bottom: 9rem;
+  }
+  .fgVideo {
+    object-position: center 22%;
+  }
+}

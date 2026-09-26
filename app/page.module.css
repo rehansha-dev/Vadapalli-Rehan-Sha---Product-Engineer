@@ -1,0 +1,251 @@
+.main {
+  position: relative;
+  background: var(--color-void);
+}
+
+/* GSAP ScrollTrigger targets this class; JS drives the actual reveal
+   animation, this just sets a sane pre-hydration/no-js fallback. */
+.reveal {
+  will-change: transform, opacity;
+}
+
+.section {
+  position: relative;
+  z-index: 10;
+  background: var(--color-void);
+  padding: clamp(4rem, 12vh, 7rem) var(--edge);
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+.sectionInner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 2.5rem;
+  max-width: 30ch;
+}
+
+/* ---- About ---- */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.aboutText {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.85;
+  color: var(--color-ash);
+  font-weight: 300;
+}
+
+.aboutText strong {
+  color: var(--color-paper);
+  font-weight: 500;
+}
+
+.statList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.statItem {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-glass-border);
+  border-radius: 4px;
+  background: var(--color-glass);
+}
+
+.statNumber {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-monitor);
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ash);
+  margin-top: 0.35rem;
+}
+
+/* ---- Projects ---- */
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(245, 241, 232, 0.08);
+  border: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+.projectCard {
+  background: var(--color-void);
+  padding: 2rem;
+  transition: background 0.4s ease;
+}
+
+.projectCard:hover {
+  background: rgba(255, 140, 66, 0.04);
+}
+
+.projectIndex {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-ember-dim);
+  letter-spacing: 0.1em;
+}
+
+.projectName {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 0.6rem 0 0.5rem;
+  color: var(--color-paper);
+}
+
+.projectStack {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--color-monitor);
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.projectDesc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--color-ash);
+  font-weight: 300;
+}
+
+/* ---- Skills ---- */
+.skillGroups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.skillGroupLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-paper);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+}
+
+/* ---- Achievements ---- */
+.achieveList {
+  display: grid;
+  gap: 1px;
+  background: rgba(245, 241, 232, 0.08);
+  border: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+.achieveItem {
+  background: var(--color-void);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: baseline;
+  font-size: 0.95rem;
+  color: var(--color-ash);
+  font-weight: 300;
+}
+
+.achieveItem strong {
+  color: var(--color-paper);
+  font-weight: 500;
+}
+
+.achieveMark {
+  color: var(--color-monitor);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* ---- Contact ---- */
+.contact {
+  text-align: left;
+}
+
+.contactTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  max-width: 18ch;
+  margin-bottom: 2rem;
+}
+
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+}
+
+.contactLink {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--color-ash);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.2rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: var(--color-ember);
+  border-color: var(--color-ember);
+}
+
+.footer {
+  padding: 2rem var(--edge);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-ash);
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+@media (max-width: 800px) {
+  .aboutGrid,
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+}
