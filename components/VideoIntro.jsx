@@ -2,10 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import dynamic from 'next/dynamic';
+import CinematicLayer from './CinematicLayer';
 import styles from './VideoIntro.module.css';
-
-const CinematicLayer = dynamic(() => import('./CinematicLayer'), { ssr: false });
 
 const PROFILE_IMAGE = '/images/profile.jpg';
 
